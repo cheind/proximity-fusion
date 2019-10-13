@@ -56,17 +56,17 @@ class Normal:
     
 class Histogram:
     '''2D histogram'''
-    def __init__(self, H=None, data=None, bins=3, xyrange=[[-5,5], [-1,3]]):
+    def __init__(self, H=None, data=None, num_bins=3, xyrange=[[-5,5], [-1,3]]):
         if data is None:
             data = np.empty((0,2))            
             
         if H is None:
-            self.H, self.xe, self.ye = np.histogram2d(data[:, 0], data[:, 1], bins=bins, range=xyrange, normed=False)
+            self.H, self.xe, self.ye = np.histogram2d(data[:, 0], data[:, 1], bins=num_bins, range=xyrange, normed=False)
             self.H += np.ones_like(self.H)
             self.H /= self.H.sum()
             self.H = self.H.astype(np.float32)
         else:
-            K, self.xe, self.ye = np.histogram2d(data[:, 0], data[:, 1], bins=bins, range=xyrange, normed=False)
+            K, self.xe, self.ye = np.histogram2d(data[:, 0], data[:, 1], bins=num_bins, range=xyrange, normed=False)
             self.H = np.asarray(H).reshape(K.shape[0], K.shape[1])
         
     def bin_coords(self, xy):
@@ -87,8 +87,8 @@ class Categorical2d:
         self.hist = hist
         
     @staticmethod
-    def fit(X):   
-        h = Histogram(data=X)        
+    def fit(X, num_bins, xyrange):   
+        h = Histogram(data=X, num_bins=num_bins, xyrange=xyrange)        
         return Categorical2d(h)
     
     def pdf(self, x):
