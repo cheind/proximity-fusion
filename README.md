@@ -4,4 +4,4 @@ This repository contains code that accompanies our publication
 Christoph Heindl, Markus Ikeda, Gernot Stübl, Andreas Pichler and Josef Scharinger <br/>
 IROS 2019, 2nd Workshop on Proximity Perception
 
-Open ![Semi-Supervised Fusion.ipynb](./Semi-Supervised Fusion.ipynb) for details.
+Open [semi-supervised-fusion.ipynb](./semi-supervised-fusion.ipynb) for details.
